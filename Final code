@@ -26,7 +26,7 @@ except Exception as exception:
 
 try:
 
-    J = [{"d_txt" : """ASNANI STOCK BROKER""", "start_page_no" : 1}]
+    J = [{"d_txt" : """(Insert text to highlight here)""", "start_page_no" : 1}]
 
  
 
@@ -44,7 +44,7 @@ except TypeError:
 
 else:
 
-    doc = fitz.open("ENROLL_MIS.pdf")
+    doc = fitz.open("(Enter input pdf filename here).pdf")
 
     index = 0
 
