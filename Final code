@@ -1,0 +1,105 @@
+try:
+
+    import fitz
+
+ 
+
+except ImportError as error:
+
+    print( "Import error has been raised, Please install the following Python Library")
+
+ 
+
+except Exception as exception:
+
+    # Output unexpected Exceptions.
+
+    print(exception, False)
+
+      
+
+ 
+
+ 
+
+ 
+
+try:
+
+    J = [{"d_txt" : """ASNANI STOCK BROKER""", "start_page_no" : 1}]
+
+ 
+
+except LookupError:
+
+    print("Key error exception error has been raised, selected discrepency might not be present")
+
+ 
+
+except TypeError:
+
+    print("Check given Discrepency type")
+
+ 
+
+else:
+
+    doc = fitz.open("ENROLL_MIS.pdf")
+
+    index = 0
+
+    input_string = []
+
+ 
+
+    for x in J :
+
+        input_string = J[index]
+
+ 
+
+        # READ IN PDF            
+
+        page_num = (input_string["start_page_no"] - 1)
+
+        page = doc[page_num]        
+
+ 
+
+        # SEARCH
+
+        text = input_string["d_txt"]
+
+        text_instances = page.searchFor(text)
+
+              
+
+        # IF THE TEXT IS NOT PRESENT IN THE PDF
+
+        if(len(text_instances) == 0) :
+
+                print("The text '" + text + "' is not present in page no " + str(page_num + 1) + " of the input file")
+
+                index += 1
+
+ 
+
+        else :        
+
+                # HIGHLIGHT
+
+                for inst in text_instances:
+
+                        highlight = page.addHighlightAnnot(inst)
+
+                        
+
+ 
+
+                index += 1
+
+               
+
+                # OUTPUT
+
+                doc.save("output.pdf", garbage=4, deflate=True, clean=True)
